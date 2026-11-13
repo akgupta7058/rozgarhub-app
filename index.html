@@ -3,37 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RozgarHub - Sahi Kaam, Sahi Daam</title>
+  <title>RozgarHub Official — Sahi Kaam, Sahi Daam</title>
+  <link href="https://googleapis.com" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; background: #f3f4f6; margin: 0; padding: 20px; text-align: center; color: #1f2937; }
-    .card { max-width: 450px; margin: 20px auto; background: #fff; padding: 30px 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .logo { width: 70px; height: 70px; background: #1e3a8a; color: #fff; font-size: 28px; font-weight: bold; line-height: 70px; border-radius: 18px; margin: 0 auto 15px; }
-    h1 { color: #1e3a8a; margin: 0 0 8px; font-size: 26px; }
-    p { color: #4b5563; font-size: 15px; line-height: 1.5; }
-    .btn { display: block; background: #f97316; color: #fff; text-decoration: none; font-size: 18px; font-weight: bold; padding: 16px; border-radius: 12px; margin: 25px 0 12px; box-shadow: 0 4px 10px rgba(249,115,22,0.4); }
-    .steps { text-align: left; background: #eff6ff; padding: 15px; border-radius: 12px; margin-top: 20px; font-size: 14px; }
-    .web-link { display: inline-block; margin-top: 20px; color: #1e3a8a; font-weight: bold; text-decoration: none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: #f8fafc; color: #0f172a; line-height: 1.6; }
+    
+    /* Top Navbar */
+    nav { background: #ffffff; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; color: #1e3a8a; }
+    .brand-icon { background: linear-gradient(135deg, #1e3a8a, #f97316); color: #fff; width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .nav-btn { background: #eff6ff; color: #1e3a8a; padding: 8px 14px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 13px; }
+
+    /* Hero Section */
+    .hero { background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%); color: #ffffff; padding: 50px 20px 60px; text-align: center; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px; }
+    .badge { display: inline-block; background: rgba(249, 115, 22, 0.2); border: 1px solid #f97316; color: #fdba74; padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 700; margin-bottom: 16px; }
+    .hero h1 { font-size: 32px; font-weight: 800; line-height: 1.25; max-width: 600px; margin: 0 auto 14px; }
+    .hero p { color: #cbd5e1; font-size: 15px; max-width: 520px; margin: 0 auto 28px; }
+
+    /* Main Download Button */
+    .download-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #f97316, #ea580c); color: #ffffff; text-decoration: none; font-size: 18px; font-weight: 800; padding: 18px 32px; border-radius: 16px; box-shadow: 0 10px 25px rgba(249, 115, 22, 0.45); transition: transform 0.2s; width: 100%; max-width: 380px; }
+    .download-btn:active { transform: scale(0.98); }
+    .trust-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 16px; font-size: 12px; color: #94a3b8; font-weight: 600; }
+
+    /* Container */
+    .container { max-width: 800px; margin: -30px auto 40px; padding: 0 16px; }
+
+    /* Install Card */
+    .card { background: #ffffff; border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06); margin-bottom: 24px; }
+    .card h2 { font-size: 19px; color: #1e3a8a; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
+    .step-num { background: #dbeafe; color: #1e3a8a; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+    .step p { font-size: 14px; color: #334155; }
+
+    /* Features Grid */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .feat-card { background: #ffffff; padding: 20px; border-radius: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.04); border: 1px solid #f1f5f9; }
+    .feat-icon { font-size: 26px; margin-bottom: 10px; }
+    .feat-card h3 { font-size: 16px; color: #0f172a; margin-bottom: 6px; }
+    .feat-card p { font-size: 13px; color: #64748b; }
+
+    /* Web Version Banner */
+    .web-banner { background: #eff6ff; border: 1px dashed #3b82f6; border-radius: 16px; padding: 18px; text-align: center; }
+    .web-banner a { color: #1d4ed8; font-weight: 800; text-decoration: none; font-size: 15px; }
+
+    footer { text-align: center; padding: 24px; color: #64748b; font-size: 13px; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="logo">RH</div>
-    <h1>RozgarHub</h1>
-    <p>Apne Area ke Verified Rajmistri, Plumber, Electrician aur Labour se Seedha Judein — Bina Kisi Dalal ke!</p>
-    
-    <a class="btn" href="./RozgarHub.apk" download="RozgarHub.apk">
-      ⬇️ Download Android App (1.2 MB)
-    </a>
-    <small style="color:#16a34a; font-weight:bold;">✓ 100% Free • ✓ Verified Workers • ✓ Safe APK</small>
 
-    <div class="steps">
-      <strong>📲 App Kaise Install Karein?</strong><br><br>
-      1. Upar diye gaye Orange button par click karein.<br>
-      2. File download hone ke baad us par click karein.<br>
-      3. 'Install' dabayein (Agar permission puche toh 'Allow' karein).
+  <nav>
+    <div class="brand">
+      <div class="brand-icon">RH</div>
+      <span>RozgarHub</span>
+    </div>
+    <a href="https://vercel.app" class="nav-btn">Web App →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="badge">🇮🇳 Kanpur's #1 Worker Discovery App</div>
+    <h1>Sahi Kaam, Sahi Daam — Bina Kisi Dalal Ke!</h1>
+    <p>Apne mohalle ke Verified Rajmistri, Plumber, Electrician, Carpenter aur Labour se seedha call ya WhatsApp par judein.</p>
+    
+    <a class="download-btn" href="./RozgarHub.apk" download="RozgarHub.apk">
+      ⬇️ Download Official App (1.2 MB)
+    </a>
+    <div class="trust-row">
+      <span>✓ 100% Free</span>
+      <span>✓ Verified Workers</span>
+      <span>✓ Anti-Spam Safe</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="card">
+      <h2>📲 App Kaise Install Karein? (Sirf 30 Second)</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>Upar diye gaye <strong>"Download Official App"</strong> orange button par click karein.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>File download hone ke baad notification par click karein (Agar phone <em>"Install unknown apps"</em> puche toh <strong>Settings > Allow</strong> on karein).</p>
+      </div>
+      <div class="step" style="margin-bottom:0;">
+        <div class="step-num">3</div>
+        <p><strong>Install</strong> dabayein aur apne area ke workers se seedha baat karna shuru karein!</p>
+      </div>
     </div>
 
-    <a class="web-link" href="https://vercel.app">🌐 Bina Download kiye Web par Chalayein →</a>
+    <div class="grid">
+      <div class="feat-card">
+        <div class="feat-icon">🏗️</div>
+        <h3>12+ Home Trades</h3>
+        <p>Rajmistri, Plumber, Electrician, Painter, Carpenter, Welder aur Boring mistri ek hi jagah.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🛡️</div>
+        <h3>Zero Dalal Guarantee</h3>
+        <p>Koi beech ka commission nahi. Seedha asli karigar ka number aur unki asli photo dekhein.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">⚡</div>
+        <h3>Direct Call & WhatsApp</h3>
+        <p>Ek click mein worker ko seedha phone lagayein ya WhatsApp par kaam ki photo bhejein.</p>
+      </div>
+    </div>
+
+    <div class="web-banner">
+      <p style="font-size:13px; color:#475569; margin-bottom:6px;">iPhone user hain ya bina download kiye chalana chahte hain?</p>
+      <a href="https://vercel.app">🌐 RozgarHub Web Version Open Karein →</a>
+    </div>
   </div>
+
+  <footer>
+    Made with ❤️ in Kanpur, India • © 2026 RozgarHub Official
+  </footer>
+
 </body>
 </html>
